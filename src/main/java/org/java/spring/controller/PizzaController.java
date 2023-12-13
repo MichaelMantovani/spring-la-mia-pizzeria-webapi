@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.validation.Valid;
 
 @Controller
-public class MainController {
+public class PizzaController {
 
 	@Autowired
 	PizzaService pizzaService;
