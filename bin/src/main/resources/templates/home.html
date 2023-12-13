@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="text-center mt-4">
+			<h1 th:if="${pizze == null}">Non ci sono pizze</h1>
+			<table th:if="${pizze != null}" class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Descrizione</th>
+						<th scope="col">Prezzo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pizza : ${pizze}">
+						<td>[[${pizza.id}]]</td>
+						<th>[[${pizza.nome}]]</th>
+						<td>[[${pizza.descrizione}]]</td>
+						<td>[[${pizza.prezzo}]] €</td>
+						<td><a th:href="@{pizza/{pizzaId}(pizzaId=${pizza.id})}" class="btn btn-primary">Info</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

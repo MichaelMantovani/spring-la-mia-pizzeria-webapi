@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="text-center mt-4">
+			<div class="row">
+				<div class="col-10 d-flex align-items-start gap-3">
+					<form class="d-flex w-25 mb-4" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" th:value="*{searchValue}"
+							name="searchValue">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+					<div sec:authorize="hasAnyAuthority('ADMIN')">
+						<a href="/create" class="btn btn-primary">Crea pizza</a>
+					</div>
+					<a href="/ingredienti" class="btn btn-secondary">I nostri ingredienti</a>
+				</div>
+				<div class="col-2 d-flex flex-column align-items-center" th:if="${username} != null">
+					Utente: [[${username}]]
+					<a class="btn btn-danger btn-sm mt-2" href="/logout">Logout</a>
+				</div>
+				<div class="col-2" th:if="${username} == null">
+					<a class="btn btn-primary" href="/login">Login</a>
+				</div>
+			</div>
+			<h1 th:if="${pizze == null}">Non ci sono pizze</h1>
+			<table th:if="${pizze != null}" class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Id</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Ingredienti</th>
+						<th scope="col">Prezzo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pizza : ${pizze}">
+						<td>[[${pizza.id}]]</td>
+						<th>[[${pizza.name}]]</th>
+						<td>
+							<ul class="list-unstyled d-flex justify-content-center">
+								<li th:each="ingrediente : ${pizza.ingredienti}">[[${ingrediente.name}]],</li>
+							</ul>
+						</td>
+						<td>[[${pizza.prezzo}]] €</td>
+						<td><a th:href="@{pizza/{pizzaId}(pizzaId=${pizza.id})}" class="btn btn-primary">Info</a>
+							<a sec:authorize="hasAnyAuthority('ADMIN')"
+								th:href="@{pizza/edit/{pizzaId}(pizzaId=${pizza.id})}"
+								class="btn btn-warning ms-1">Edit</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

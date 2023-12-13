@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<form id="offertaForm" th:object="${offerta}" method="post" class="mt-5">
+			<label for="name">Nome offerta</label>
+			<input type="text" class="form-control" id="name" th:field="*{name}" th:errorClass="is-invalid">
+			<div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+				<ul>
+					<li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+				</ul>
+			</div>
+			<div class="row gap-3  mb-3">
+				<div class="col">
+					<label for="startDate" class="form-label">Data di inizio</label>
+					<div class="input-group">
+						<input type="date" class="form-control" id="startDate" name="startDate" th:value="*{startDate}"
+							th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('startDate')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<label for="endDate" class="form-label">Data di fine</label>
+					<div class="input-group">
+						<input type="date" class="form-control" id="endDate" name="endDate" th:value="*{endDate}"
+							th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('endDate')}" class="invalid-feedback">
+							<ul>
+								<li th:each="err : ${#fields.errors('endDate')}" th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button th:if="${offerta.id == 0}" class="btn btn-primary me-1">Crea Offerta</button>
+			<button th:if="${offerta.id != 0}" class="btn btn-warning me-1">Modifica Offerta</button>
+		</form>
+	</div>
+</body>
+
+</html>

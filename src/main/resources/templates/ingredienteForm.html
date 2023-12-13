@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<form id="ingredienteForm" th:object="${ingrediente}" method="post" class="mt-5">
+			<label for="name">Nome Ingrediente</label>
+			<input type="text" class="form-control mt-2" id="name" th:field="*{name}" th:errorClass="is-invalid">
+			<div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+				<ul>
+					<li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+				</ul>
+			</div>
+			<button class="btn btn-primary btn-sm mt-4">Crea Ingrediente</button>
+		</form>
+	</div>
+</body>
+
+</html>
