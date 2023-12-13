@@ -70,7 +70,7 @@ public class PizzaRestController {
 		return new ResponseEntity<Pizza>(pizza,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("delete/{id}")
+	@DeleteMapping("{id}/delete")
 	public ResponseEntity<Pizza> deletePizza(@PathVariable int id){
 		Pizza pizza = pizzaService.findById(id);
 
