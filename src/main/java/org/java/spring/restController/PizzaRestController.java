@@ -76,6 +76,6 @@ public class PizzaRestController {
 
 		pizzaService.delete(pizza);
 		
-		return new ResponseEntity<Pizza>(pizza, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
