@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,6 +47,7 @@ public class Pizza {
 	private double prezzo;
 
 	@OneToMany(mappedBy = "pizza")
+
 	private List<Offerta> offerte;
 
 	@ManyToMany
@@ -69,7 +71,8 @@ public class Pizza {
 	public List<Ingrediente> getIngredienti() {
 		return ingredienti;
 	}
-
+	
+	@JsonProperty("ingredienti")
 	public void setIngredienti(List<Ingrediente> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
@@ -115,6 +118,7 @@ public class Pizza {
 		return foto;
 	}
 
+
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
@@ -132,5 +136,6 @@ public class Pizza {
 		// TODO Auto-generated method stub
 		return "Pizza: " + this.name + "\n" + this.descrizione + "\n" + this.prezzo;
 	}
+	
 
 }

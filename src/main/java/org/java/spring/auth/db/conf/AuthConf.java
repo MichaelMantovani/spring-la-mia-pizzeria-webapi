@@ -18,7 +18,7 @@ public class AuthConf {
 		http.csrf().disable()
 		.cors().disable()
 		.authorizeHttpRequests()
-		.requestMatchers("/api/pizza/**")
+		.requestMatchers("/**")
 				.permitAll()
 				.and().formLogin()
 				.and().logout();
