@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.URL;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,8 +47,7 @@ public class Pizza {
 	@NotNull(message = "Devi inserire almeno un prezzo")
 	private double prezzo;
 
-	@OneToMany(mappedBy = "pizza")
-
+	@OneToMany(mappedBy = "pizza", cascade = CascadeType.REMOVE)
 	private List<Offerta> offerte;
 
 	@ManyToMany
@@ -56,28 +56,26 @@ public class Pizza {
 	public Pizza() {
 	}
 
-	public Pizza(String name, String descrizione, String foto, double prezzo, Ingrediente... ingredienti ) {
+	public Pizza(String name, String descrizione, String foto, double prezzo, Ingrediente... ingredienti) {
 
 		setName(name);
 		setDescrizione(descrizione);
 		setFoto(foto);
 		setPrezzo(prezzo);
 		setIngredienti(ingredienti);
-		
+
 	}
 	
-	
-
 	public List<Ingrediente> getIngredienti() {
 		return ingredienti;
 	}
-	
-	@JsonProperty("ingredienti")
+
+	@JsonIgnore
 	public void setIngredienti(List<Ingrediente> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
+
 	
-	@JsonIgnore
 	public void setIngredienti(Ingrediente... ingredienti) {
 		setIngredienti(Arrays.asList(ingredienti));
 	}
@@ -118,7 +116,6 @@ public class Pizza {
 		return foto;
 	}
 
-
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
@@ -136,6 +133,5 @@ public class Pizza {
 		// TODO Auto-generated method stub
 		return "Pizza: " + this.name + "\n" + this.descrizione + "\n" + this.prezzo;
 	}
-	
 
 }

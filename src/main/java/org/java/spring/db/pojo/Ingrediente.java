@@ -31,8 +31,6 @@ public class Ingrediente {
 	public Ingrediente(String name) {
 		setName(name);
 	}
-	
-	
 
 	public List<Pizza> getPizzas() {
 		return pizzas;
