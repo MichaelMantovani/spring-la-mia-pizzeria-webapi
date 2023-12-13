@@ -66,6 +66,7 @@ public class Pizza {
 
 	}
 	
+	@JsonProperty("ingredienti")
 	public List<Ingrediente> getIngredienti() {
 		return ingredienti;
 	}
