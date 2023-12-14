@@ -1,7 +1,6 @@
 <script setup>
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-import HomePage from './components/HomePage.vue';
 
 const pizze = ref(null);
 
@@ -15,5 +14,7 @@ onMounted(getPizze);
 </script>
 
 <template>
-  <div><HomePage :pizze="pizze" /></div>
+  <div>
+    <RouterView :pizze="pizze"></RouterView>
+  </div>
 </template>

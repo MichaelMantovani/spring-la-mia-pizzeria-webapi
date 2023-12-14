@@ -1,6 +1,5 @@
 <script setup>
-import { computed } from 'vue';
-
+import { ref } from 'vue';
 const props = defineProps({
   pizze: {
     type: Array,
@@ -17,7 +16,9 @@ const props = defineProps({
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <div>
-        <a href="#" class="btn btn-primary">Crea pizza</a>
+        <RouterLink class="btn btn-primary" :to="{ name: 'pizza-form' }" :pizze="pizze"
+          >Crea una nuova pizza</RouterLink
+        >
       </div>
     </div>
     <table class="table">
