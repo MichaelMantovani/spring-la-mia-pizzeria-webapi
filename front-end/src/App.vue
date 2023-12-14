@@ -15,6 +15,6 @@ onMounted(getPizze);
 
 <template>
   <div>
-    <RouterView :pizze="pizze"></RouterView>
+    <RouterView @storeNewPizza="getPizze" :pizze="pizze"></RouterView>
   </div>
 </template>

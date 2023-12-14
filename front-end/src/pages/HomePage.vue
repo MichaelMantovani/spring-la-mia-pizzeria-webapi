@@ -6,19 +6,18 @@ const props = defineProps({
     required: true,
   },
 });
+const emits = defineEmits();
 </script>
 
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5" @storeNewPizza="emits('storeNewPizza')">
     <div class="d-flex gap-3">
       <form class="d-flex mb-4" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" name="searchValue" />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <div>
-        <RouterLink class="btn btn-primary" :to="{ name: 'pizza-form' }" :pizze="pizze"
-          >Crea una nuova pizza</RouterLink
-        >
+        <RouterLink class="btn btn-primary" :to="{ name: 'pizza-form' }">Crea una nuova pizza</RouterLink>
       </div>
     </div>
     <table class="table">
